@@ -1,3 +1,10 @@
+"""
+Original work Copyright (c) [2023] [doot]
+Modified work Copyright (c) [2025] [mister-gone-int]
+Licensed under the MIT License - see LICENSE file for details.
+https://github.com/dootss/catbox-scraper
+"""
+
 import os
 import sys
 import yaml
