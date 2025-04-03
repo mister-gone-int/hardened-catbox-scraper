@@ -1,0 +1,150 @@
+threads: 550
+update_rate: 0.01 # how fast the status board will update. in seconds.
+file_extensions:
+  - .png
+  - .gif
+  - .jpg
+  - .jpeg
+ # - .webm
+ # - .mp4   # usually the one that takes up the most storage space.
+
+# Proxy configuration
+proxies:
+  enabled: false  # Set to true to use proxies
+  selection_method: "random"  # Options: "random" or "rotate"
+  proxy_type: "http"  # Options: "http", "https", "socks5"
+  list: []
+    # Add your proxies here, for example:
+    # - "username:password@host:port"
+    # - "socks5://username:password@host:port"
+
+# Security configuration
+security:
+  enabled: true
+  verify_file_type: true    # Verify that file extensions match actual content
+  scan_for_malicious: true  # Basic scan for potentially malicious content
+  
+  # Advanced security features
+  advanced_security:
+    enabled: true
+    async_processing: true  # Process security checks asynchronously to avoid slowing downloads
+    
+    # Signature-based detection
+    signature_detection:
+      enabled: true
+      update_signatures: false  # Whether to update signatures from online sources
+      
+    # Entropy analysis to detect encrypted/obfuscated content
+    entropy_analysis:
+      enabled: true
+      threshold: 7.0  # Entropy threshold (0-8), higher values indicate encryption/compression
+    
+    # Advanced header analysis
+    header_analysis:
+      enabled: true
+      polyglot_detection: true  # Detect files valid in multiple formats
+      format_validation: true   # Validate format-specific structures
+    
+    # Certificate pinning for HTTPS connections
+    certificate_pinning:
+      enabled: false  # Disabled by default as it requires setup
+      pins: []        # Add certificate hashes here
+  
+  # Steganography detection
+  steganography:
+    enabled: true
+    detection_level: "normal"  # basic, normal, thorough
+    isolate_steg_files: true
+  
+  # Rate limiting configuration
+  rate_limiting:
+    enabled: false
+    requests_per_minute: 60
+    cooldown_time: 5
+  
+  # Isolation and reporting configuration
+  isolation:
+    enabled: true
+    malware_folder: "malware"
+    adult_folder: "adult"
+    unknown_folder: "unknown"
+    generate_reports: true
+
+# customise with whatever you want to look for!
+# obviously, some will be rarer than others
+# but you can find zips, txt files, etc. tons of
+
+# below are a ton of templates that you can use and common file extensions for each type
+# to use them, simply uncomment them and remove the file_extensions header and contents above.
+# or you can just pick and choose from the lists below to add to your list :)
+
+# IMAGES
+# file_extensions:
+#   - .png
+#   - .gif
+#   - .jpg
+#   - .jpeg
+#   - .bmp
+#   - .tif
+#   - .tiff
+#   - .webp
+
+# VIDEOS
+# file_extensions:
+#   - .webm
+#   - .mp4
+#   - .mov
+#   - .avi
+#   - .mkv
+#   - .flv
+#   - .wmv
+
+# CODE
+# file_extensions:
+#   - .html
+#   - .css
+#   - .js
+#   - .jsx
+#   - .ts
+#   - .tsx
+#   - .php
+#   - .py
+#   - .rb
+#   - .java
+#   - .cpp
+#   - .c
+#   - .cs
+#   - .swift
+#   - .go
+#   - .bat
+
+
+# DOCUMENTS
+# file_extensions:
+#   - .txt
+#   - .md  
+#   - .pdf
+#   - .doc
+#   - .docx
+#   - .odt
+#   - .rtf
+
+
+# COMPRESSED/ARCHIVES
+# file_extensions:
+#   - .zip
+#   - .rar
+#   - .7z
+#   - .tar
+#   - .gz
+#   - .bz2
+#   - .xz
+
+# AUDIO
+# file_extensions:
+#   - .mp3
+#   - .wav
+#   - .aac
+#   - .flac
+#   - .ogg
+#   - .m4a

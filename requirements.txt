@@ -1,0 +1,9 @@
+pyyaml
+aiohttp
+aiofiles
+python-magic
+aiohttp_socks  # For SOCKS proxy support
+unblob         # For detecting hidden data in files (optional)
+python-magic-bin  # Binary version of python-magic (needed for unblob)
+pillow         # For safe image processing in remediate.py
+certifi        # For certificate pinning
