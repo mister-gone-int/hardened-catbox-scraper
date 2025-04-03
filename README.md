@@ -5,7 +5,7 @@ Catbox Scraper with added security features, malicious / harmful file detection 
 ## Attribution
 This project is a modified version of [Catbox Scraper ](https://github.com/dootss/catbox-scraper/blob/main/LICENSE) by [DOOTSS], licensed under the MIT License. DOOTSS's implementation is much faster than this one due to the extra overhead and if you are looking for the fastest possible throughput then that is the one to go with.
 
-###Enhancements Added
+### Enhancements Added
 
     Advanced security features (signature detection, entropy analysis)
     Header analysis for detecting polyglot files
