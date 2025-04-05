@@ -1,5 +1,5 @@
 # Core dependencies
-pyyaml         # For configuration file parsing
+pyyaml         # For configuration file parsing (imported as 'yaml' in code)
 aiohttp        # For asynchronous HTTP requests
 aiofiles       # For asynchronous file operations
 python-magic   # For file type detection
@@ -10,5 +10,6 @@ aiohttp_socks  # For SOCKS proxy support
 
 # Security features
 unblob         # For detecting hidden data in files (optional)
-python-magic-bin  # Binary version of python-magic (needed for unblob)
+# python-magic-bin is only needed on Windows, not on Linux
+# python-magic-bin  # Binary version of python-magic (needed for unblob on Windows)
 pillow         # For safe image processing in remediate.py
