@@ -15,6 +15,7 @@ This project is a modified version of [Catbox Scraper ](https://github.com/doots
     Stenography detection
     Optional unblob integration for detecting files that could be malicious
     Isolation of files into sub folders if they are suspected to be malicious
+    Path sanitization to prevent path traversal attacks targeting critical OS files
     Install wrapper to create a conda environment for the requirements since some of the packages are older and can cause difficulty to those unfamiliar with python dependcency management. If you wish you may swap it out for your virtual environment of choice. I may update the script and add options for venv, pipx, and uv in the future.
 
 ### Possible future enhancements
