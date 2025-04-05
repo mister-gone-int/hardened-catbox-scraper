@@ -22,6 +22,7 @@ import certifi
 from typing import List, Optional, Tuple, Dict, Any, Set
 from aiohttp_socks import ProxyConnector
 from collections import defaultdict, deque, Counter
+from path_sanitizer import sanitize_filename, validate_safe_path, create_safe_path
 
 
 CONFIG_FILE = 'config.yaml'
@@ -153,11 +154,14 @@ class IsolationManager:
             target_dir = self.unknown_folder
             self.stats["unknown_isolated"] += 1
         
-        # Create a unique filename
+        # Create a unique filename and sanitize it
         filename = os.path.basename(file_path)
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         unique_filename = f"{timestamp}_{filename}"
-        target_path = os.path.join(target_dir, unique_filename)
+        
+        # Sanitize the filename and create a safe path
+        safe_filename = sanitize_filename(unique_filename)
+        target_path = create_safe_path(target_dir, safe_filename)
         
         # Copy the file to the isolation directory
         try:
@@ -913,8 +917,12 @@ def format_elapsed_time(seconds):
 
 async def download_image(session, url, folder_name, random_filename, security_manager=None, isolation_manager=None):
     """Download an image and optionally perform security checks."""
-    file_path = os.path.join(folder_name, random_filename)
-    extension = os.path.splitext(random_filename)[1]
+    # Sanitize the filename to prevent path traversal attacks
+    safe_filename = sanitize_filename(random_filename)
+    
+    # Create a safe path that is guaranteed to be within the base directory
+    file_path = create_safe_path(folder_name, safe_filename)
+    extension = os.path.splitext(safe_filename)[1]
     
     # The session already has the proxy configuration from check_url
     async with session.get(url) as image_data:
@@ -1012,7 +1020,9 @@ async def download_image(session, url, folder_name, random_filename, security_ma
 
 async def save_valid_url(folder_name, url):
     os.makedirs(folder_name, exist_ok=True)
-    async with aiofiles.open(f"{folder_name}/valids.txt", "a") as file:
+    # Create a safe path for the valids.txt file
+    safe_path = create_safe_path(folder_name, "valids.txt")
+    async with aiofiles.open(safe_path, "a") as file:
         await file.write(url + "\n")
 
 def status_board(proxy_manager=None, security_manager=None, isolation_manager=None, rate_limiter=None):
