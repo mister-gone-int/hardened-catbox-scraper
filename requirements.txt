@@ -1,9 +1,14 @@
-pyyaml
-aiohttp
-aiofiles
-python-magic
+# Core dependencies
+pyyaml         # For configuration file parsing
+aiohttp        # For asynchronous HTTP requests
+aiofiles       # For asynchronous file operations
+python-magic   # For file type detection
+certifi        # For certificate pinning
+
+# Proxy support
 aiohttp_socks  # For SOCKS proxy support
+
+# Security features
 unblob         # For detecting hidden data in files (optional)
 python-magic-bin  # Binary version of python-magic (needed for unblob)
 pillow         # For safe image processing in remediate.py
-certifi        # For certificate pinning
